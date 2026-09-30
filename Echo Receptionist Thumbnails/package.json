@@ -1,0 +1,8 @@
+{
+  "name": "echo-receptionist-thumbnails",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "png": "node export-png.mjs"
+  }
+}

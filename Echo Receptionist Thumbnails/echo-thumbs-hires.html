@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Echo Receptionist — High-res thumbnails</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #143d3d;
+      --deep: #0b2424;
+      --gold: #d4a017;
+      --gold-2: #e2b84a;
+      --cream: #f3ece3;
+      --display: "Outfit", sans-serif;
+      --body: "Manrope", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #111; font-family: var(--body); -webkit-font-smoothing: antialiased; }
+
+    .artboard {
+      width: 2400px;
+      height: 1800px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 10px; font-family: var(--display);
+      font-weight: 800; letter-spacing: -0.04em; color: #fff;
+    }
+    .logo svg { display: block; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 999px;
+      font-weight: 800; font-family: var(--body); cursor: default;
+    }
+    .btn-gold { background: var(--gold); color: var(--forest); }
+    .btn-white { background: #fff; color: var(--forest); }
+    .btn-lg { padding: 14px 26px; font-size: 16px; }
+    .btn-sm { padding: 10px 18px; font-size: 13px; }
+
+    /* ——— 02 website ——— */
+    .web { display: grid; grid-template-columns: 1.62fr 0.38fr; height: 100%; }
+    .web-main {
+      margin: 28px 0 28px 28px;
+      border-radius: 28px 0 0 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(48% 40% at 50% 0%, rgba(212,160,23,.22), transparent 58%),
+        linear-gradient(180deg, #102e2e 0%, #0b2424 42%, #081c1c 100%);
+      color: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .web-main::before, .web-main::after {
+      content: ""; position: absolute; bottom: 0; width: 34%; height: 58%;
+      background: linear-gradient(180deg, transparent, rgba(20,70,50,.55));
+      pointer-events: none;
+    }
+    .web-main::before { left: 0; background:
+      linear-gradient(to top, #1c3d32 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 100%, #2a5a45 0%, transparent 50%); }
+    .web-main::after { right: 0; background:
+      linear-gradient(to top, #1a3530 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 100%, #3a4a38 0%, transparent 50%); }
+    .nav {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 48px 8px;
+    }
+    .nav-links { display: flex; gap: 28px; color: #d5e0e0; font-weight: 650; font-size: 15px; }
+    .hero { position: relative; z-index: 2; text-align: center; padding: 12px 80px 0; }
+    .hero h1 {
+      font-family: var(--display); font-size: 64px; line-height: 0.98;
+      letter-spacing: -0.045em; font-weight: 800; margin: 12px 0 12px;
+    }
+    .hero p { max-width: 640px; margin: 0 auto; font-size: 20px; line-height: 1.45; color: #c9d6d6; }
+    .hero-ctas { display: flex; justify-content: center; gap: 12px; margin-top: 22px; }
+
+    .dash {
+      position: relative; z-index: 3;
+      margin: 28px auto 0; width: min(1280px, 92%);
+      flex: 1;
+      background: rgba(12,36,36,.92); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 22px; display: grid; grid-template-columns: 196px 1fr;
+      overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.35);
+    }
+    .dash-nav { background: #0e2c2c; padding: 18px 14px; border-right: 1px solid rgba(255,255,255,.08); }
+    .dash-nav input {
+      width: 100%; margin: 14px 0 12px; border: 0; border-radius: 10px;
+      background: #163838; color: #cfe; padding: 9px 10px; font-size: 12px;
+    }
+    .dash-nav p { font-size: 13px; padding: 8px 10px; border-radius: 9px; color: #c5d4d4; margin-bottom: 2px; }
+    .dash-nav p.on { background: rgba(212,160,23,.18); color: var(--gold-2); font-weight: 800; }
+    .dash-body { padding: 18px 20px 16px; }
+    .dash-body h3 { font-family: var(--display); font-size: 20px; }
+    .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 14px; }
+    .kpi { background: #123333; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; }
+    .kpi em { display: block; font-style: normal; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8aa; font-weight: 800; }
+    .kpi strong { display: block; margin-top: 6px; font-family: var(--display); font-size: 34px; }
+    .live { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; }
+    .pane { background: #123333; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; }
+    .wave { display: flex; align-items: flex-end; gap: 4px; height: 54px; margin-top: 10px; }
+    .wave span { width: 6px; background: var(--gold); border-radius: 99px; }
+    .wave span:nth-child(odd) { height: 46%; }
+    .wave span:nth-child(even) { height: 92%; }
+    .wave span:nth-child(3n) { height: 64%; }
+    .row { display: flex; justify-content: space-between; font-size: 13px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.08); color: #cfe; }
+    .pill { display: inline-block; background: var(--gold); color: var(--forest); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-radius: 99px; padding: 4px 9px; }
+
+    .trust { position: relative; z-index: 2; text-align: center; padding: 28px 40px 10px; color: #9bb; font-size: 13px; font-weight: 700; }
+    .brands { display: flex; justify-content: center; gap: 36px; padding: 12px 0 8px; font-family: var(--display); font-weight: 800; font-size: 22px; color: #e8eeee; }
+    .scale { position: relative; z-index: 2; padding: 16px 48px 28px; display: flex; align-items: flex-end; justify-content: space-between; }
+    .scale h2 { font-family: var(--display); font-size: 42px; letter-spacing: -0.04em; }
+    .scale-card { width: 360px; background: #123333; border-radius: 16px; padding: 16px; border: 1px solid rgba(255,255,255,.08); }
+    .scale-card b { font-size: 28px; color: var(--gold-2); }
+
+    .web-side {
+      background: #0b2424; color: #fff; padding: 36px 28px;
+      border-radius: 0 28px 28px 0; margin: 28px 28px 28px 0;
+    }
+    .web-side .tag { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+    .web-side h2 { font-family: var(--display); font-size: 34px; letter-spacing: -0.04em; margin: 8px 0 22px; line-height: 1.05; }
+    .fcard { background: #123333; border-radius: 18px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,.08); }
+    .fcard h3 { font-family: var(--display); font-size: 18px; margin-bottom: 6px; }
+    .fcard p { font-size: 13px; color: #a9bdbd; line-height: 1.4; margin-bottom: 12px; }
+    .chart {
+      height: 120px; border-radius: 12px; overflow: hidden;
+      background: linear-gradient(#2a3d38, #1a2a28);
+      position: relative; display: flex; align-items: flex-end; gap: 8px; padding: 16px 18px 14px;
+    }
+    .chart i { flex: 1; background: var(--gold); border-radius: 4px 4px 0 0; display: block; }
+    .chart b { position: absolute; left: 16px; top: 12px; font-size: 13px; }
+
+    /* ——— devices ——— */
+    .stage { height: 100%; display: grid; place-items: center; }
+    .ipad {
+      width: 1680px; height: 1180px; background: #1b1b1b; border-radius: 36px;
+      padding: 18px; box-shadow: 0 50px 90px rgba(40,24,10,.22), 0 0 0 2px #3a3a3a;
+      position: relative;
+    }
+    .ipad.tilt-l { transform: perspective(2200px) rotateY(-9deg) rotateX(5deg); }
+    .ipad.tilt-r { transform: perspective(2200px) rotateY(7deg) rotateX(8deg); }
+    .cam { position: absolute; top: 14px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #111; box-shadow: inset 0 0 0 2px #333; }
+    .ipad-screen { height: 100%; border-radius: 22px; overflow: hidden; background: #0b2424; }
+
+    .phone {
+      width: 620px; height: 1280px; background: #111; border-radius: 72px; padding: 16px;
+      box-shadow: 0 50px 90px rgba(40,24,10,.25); transform: rotate(-8deg);
+      position: relative;
+    }
+    .island { position: absolute; top: 28px; left: 50%; width: 168px; height: 36px; margin-left: -84px; background: #000; border-radius: 99px; z-index: 4; }
+    .phone-screen { height: 100%; border-radius: 56px; overflow: hidden; background: #0b2424; }
+
+    .site { height: 100%; color: #fff; display: flex; flex-direction: column;
+      background:
+        radial-gradient(50% 36% at 50% 0%, rgba(212,160,23,.2), transparent 60%),
+        linear-gradient(#123333, #0b2424);
+    }
+    .site .nav { padding: 22px 32px; }
+    .site .hero h1 { font-size: 54px; }
+    .site .hero p { font-size: 17px; }
+    .site .dash { width: auto; margin: 22px 32px 28px; }
+    .m-site { height: 100%; padding: 56px 22px 24px; color: #fff;
+      background: radial-gradient(60% 40% at 50% 0%, rgba(212,160,23,.22), transparent 60%), #0b2424; }
+    .m-site .ph-status { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; margin-bottom: 18px; }
+    .m-site h1 { font-family: var(--display); font-size: 42px; letter-spacing: -0.045em; line-height: 1; margin: 16px 0 12px; }
+    .m-site p { color: #c5d4d4; font-size: 16px; line-height: 1.4; }
+    .m-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+    .m-kpis i { background: #123333; border-radius: 14px; padding: 14px; display: block; border: 1px solid rgba(255,255,255,.08); }
+    .m-kpis em { font-style: normal; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #8aa; font-weight: 800; }
+    .m-kpis strong { display: block; font-family: var(--display); font-size: 28px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<section class="artboard" id="ipad">
+  <div class="stage">
+    <div class="ipad tilt-l">
+      <i class="cam"></i>
+      <div class="ipad-screen">
+        <div class="site">
+          <div class="nav">
+            <div class="logo">
+              <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="4.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg>
+              Echo Receptionist
+            </div>
+            <div class="nav-links"><span>AI Stack</span><span>Industries</span><span>Pricing</span><span>Live Demo</span></div>
+            <span class="btn btn-gold btn-sm">Launch Console →</span>
+          </div>
+          <div class="hero">
+            <h1>Never Miss Another<br>Customer Call.</h1>
+            <p>AI voice receptionist that answers, qualifies, books calendar, SMS, and CRM.</p>
+            <div class="hero-ctas">
+              <span class="btn btn-gold btn-lg">Start Free →</span>
+              <span class="btn btn-white btn-lg">See Demo</span>
+            </div>
+          </div>
+          <div class="dash">
+            <aside class="dash-nav">
+              <div class="logo" style="font-size:16px"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg> Echo</div>
+              <input value="Search" readonly />
+              <p class="on">Mission Control</p>
+              <p>Call Logs</p>
+              <p>Lead Pipeline</p>
+              <p>Agent Builder</p>
+              <p>Integrations</p>
+              <p>Vapi</p>
+            </aside>
+            <div class="dash-body">
+              <h3>Mission Control</h3>
+              <div class="kpis">
+                <div class="kpi"><em>Today</em><strong>12</strong></div>
+                <div class="kpi"><em>Qualified</em><strong>7</strong></div>
+                <div class="kpi"><em>Booked</em><strong>4</strong></div>
+              </div>
+              <div class="live">
+                <div class="pane">
+                  <span class="pill">Live call · Maya Chen</span>
+                  <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                  <div class="row"><span>Intent</span><b>Same-day consult</b></div>
+                  <div class="row"><span>CRM</span><b>Synced · GHL</b></div>
+                </div>
+                <div class="pane">
+                  <div class="row"><span>James Ortega</span><b>Booked</b></div>
+                  <div class="row"><span>Priya Shah</span><b>Qualified</b></div>
+                  <div class="row"><span>Daniel Brooks</span><b>Transferred</b></div>
+                  <div class="row"><span>Sofia Alvarez</span><b>Contacted</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="artboard" id="website">
+  <div class="web">
+    <div class="web-main">
+      <div class="nav">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="4.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg>
+          Echo
+        </div>
+        <div class="nav-links"><span>Features</span><span>Pricing</span><span>Demo</span></div>
+        <span class="btn btn-gold btn-sm">Start Free →</span>
+      </div>
+      <div class="hero">
+        <h1>Never Miss Another<br>Customer Call.</h1>
+        <p>AI voice receptionist that answers, qualifies,<br>books calendar, SMS, CRM.</p>
+        <div class="hero-ctas">
+          <span class="btn btn-gold btn-lg">Start Free →</span>
+          <span class="btn btn-white btn-lg">See Features</span>
+        </div>
+      </div>
+      <div class="dash">
+        <aside class="dash-nav">
+          <div class="logo" style="font-size:16px"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg> Echo</div>
+          <input value="Search" readonly />
+          <p class="on">Dashboard</p>
+          <p>Call Logs</p>
+          <p>Pipeline</p>
+          <p>Agent</p>
+          <p>Integrations</p>
+        </aside>
+        <div class="dash-body">
+          <h3>Mission Control</h3>
+          <div class="kpis">
+            <div class="kpi"><em>Today</em><strong>12</strong></div>
+            <div class="kpi"><em>Qualified</em><strong>7</strong></div>
+            <div class="kpi"><em>Booked</em><strong>4</strong></div>
+          </div>
+          <div class="live">
+            <div class="pane">
+              <span class="pill">Live call · Maya Chen</span>
+              <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="row"><span>CRM</span><b>Synced</b></div>
+            </div>
+            <div class="pane">
+              <div class="row"><span>James Ortega</span><b>Booked</b></div>
+              <div class="row"><span>Priya Shah</span><b>Qualified</b></div>
+              <div class="row"><span>Daniel Brooks</span><b>Transferred</b></div>
+              <div class="row"><span>Sofia Alvarez</span><b>Contacted</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trust">Trusted by dental, home, legal, medspa, and realty teams</div>
+      <div class="brands"><span>Vapi</span><span>Twilio</span><span>GoHighLevel</span><span>Google Calendar</span><span>OpenAI</span></div>
+      <div class="scale">
+        <div>
+          <div class="tag" style="color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px">Built to scale</div>
+          <h2>One Platform,<br>Endless Coverage.</h2>
+        </div>
+        <div class="scale-card">
+          <em style="font-style:normal;font-size:12px;color:#8aa">Answer rate</em>
+          <b>+28%</b>
+          <p style="color:#9bb;font-size:13px;margin-top:6px">More booked jobs vs voicemail drop-off</p>
+        </div>
+      </div>
+    </div>
+    <aside class="web-side">
+      <div class="tag">+ Features</div>
+      <h2>Everything For<br>The Front Desk</h2>
+      <article class="fcard">
+        <h3>AI Call Handling</h3>
+        <p>Answer every inbound line, qualify the caller, never hit voicemail.</p>
+        <div class="chart"><b>Live lines</b><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:80%"></i><i style="height:70%"></i><i style="height:94%"></i></div>
+      </article>
+      <article class="fcard">
+        <h3>Smart Booking</h3>
+        <p>Live Google Calendar slots and SMS confirmation on the call.</p>
+        <div class="chart"><b>Booked · 4 today</b><i style="height:30%"></i><i style="height:55%"></i><i style="height:44%"></i><i style="height:72%"></i><i style="height:88%"></i></div>
+      </article>
+      <article class="fcard">
+        <h3>CRM Write-back</h3>
+        <p>Transcript, tags, and notes push into GoHighLevel instantly.</p>
+        <div class="chart"><b>Sync 91%</b><i style="height:50%"></i><i style="height:66%"></i><i style="height:58%"></i><i style="height:84%"></i><i style="height:96%"></i></div>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<section class="artboard" id="iphone">
+  <div class="stage">
+    <div class="phone">
+      <div class="island"></div>
+      <div class="phone-screen">
+        <div class="m-site">
+          <div class="ph-status"><span>9:41</span><span>LTE ●●●</span></div>
+          <div class="logo" style="margin-bottom:14px">
+            <svg width="26" height="26" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="4.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg>
+            Echo
+          </div>
+          <span class="btn btn-gold btn-sm">Start Free →</span>
+          <h1>Never Miss Another Customer Call.</h1>
+          <p>24/7 AI receptionist. Qualify, book, text, and sync CRM from the live line.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
+            <span class="btn btn-gold btn-lg" style="justify-content:center">Start Free →</span>
+            <span class="btn btn-white btn-lg" style="justify-content:center">See Demo</span>
+          </div>
+          <div class="m-kpis">
+            <i><em>Active</em><strong>1</strong></i>
+            <i><em>Today</em><strong>12</strong></i>
+            <i><em>Qualified</em><strong>7</strong></i>
+            <i><em>Booked</em><strong>4</strong></i>
+          </div>
+          <div class="pane" style="margin-top:14px">
+            <span class="pill">Live · Maya Chen</span>
+            <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="row"><span>Slot</span><b>Tue 10:00</b></div>
+            <div class="row"><span>CRM</span><b>Synced</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="artboard" id="ipad-hands">
+  <div class="stage">
+    <div class="ipad tilt-r">
+      <i class="cam"></i>
+      <div class="ipad-screen">
+        <div class="site">
+          <div class="nav">
+            <div class="logo">
+              <svg width="28" height="28" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="4.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg>
+              Echo Receptionist
+            </div>
+            <div class="nav-links"><span>Features</span><span>Pricing</span><span>Demo</span></div>
+            <span class="btn btn-gold btn-sm">Start Free →</span>
+          </div>
+          <div class="hero">
+            <h1>Run The Front Desk<br>From One Dashboard.</h1>
+            <p>Mission Control for live calls, pipeline, calendar, SMS, and GoHighLevel.</p>
+            <div class="hero-ctas">
+              <span class="btn btn-gold btn-lg">Launch Console →</span>
+              <span class="btn btn-white btn-lg">See Features</span>
+            </div>
+          </div>
+          <div class="dash">
+            <aside class="dash-nav">
+              <div class="logo" style="font-size:16px"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="#d4a017"/></svg> Echo</div>
+              <input value="Search" readonly />
+              <p class="on">Dashboard</p>
+              <p>Call Logs</p>
+              <p>Pipeline</p>
+              <p>Integrations</p>
+            </aside>
+            <div class="dash-body">
+              <h3>Mission Control</h3>
+              <div class="kpis">
+                <div class="kpi"><em>Active</em><strong>1</strong></div>
+                <div class="kpi"><em>Today</em><strong>12</strong></div>
+                <div class="kpi"><em>CRM sync</em><strong>91%</strong></div>
+              </div>
+              <div class="live">
+                <div class="pane">
+                  <span class="pill">Inbound · dental</span>
+                  <p style="margin-top:8px;font-size:18px;font-weight:800">Maya Chen</p>
+                  <p style="color:#9bb;font-size:13px">Same-day consult after insurance denial</p>
+                  <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+                <div class="pane">
+                  <div class="row"><span>James Ortega</span><b>Booked</b></div>
+                  <div class="row"><span>Priya Shah</span><b>Qualified</b></div>
+                  <div class="row"><span>GoHighLevel</span><b>Synced</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

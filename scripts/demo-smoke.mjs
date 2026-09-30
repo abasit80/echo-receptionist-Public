@@ -1,0 +1,10 @@
+const base = "http://localhost:3000";
+const home = await (await fetch(`${base}/`)).text();
+const demo = await fetch(`${base}/demo`);
+const html = await demo.text();
+console.log("view demo href", home.includes('href="/demo"'));
+console.log("demo status", demo.status);
+console.log("live inbound", html.includes("Live inbound"));
+console.log("maya", html.includes("Maya Chen"));
+console.log("pipeline", html.includes("Lead pipeline"));
+console.log("mission control", html.includes("Mission Control"));

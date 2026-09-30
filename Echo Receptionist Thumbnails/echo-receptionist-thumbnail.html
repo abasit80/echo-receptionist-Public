@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Echo Receptionist — Thumbnail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #143d3d;
+      --forest-deep: #0c2828;
+      --forest-mid: #1a4a4a;
+      --gold: #d4a017;
+      --gold-soft: #e2b84a;
+      --cream: #f3efe6;
+      --paper: #fffdf8;
+      --ink: #143d3d;
+      --muted: #8aa3a3;
+      --display: "Outfit", "Trebuchet MS", sans-serif;
+      --body: "Manrope", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #071616;
+      color: #fff;
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .artboard {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(42% 48% at 50% 52%, rgba(212, 160, 23, 0.16), transparent 62%),
+        radial-gradient(70% 70% at 50% 50%, #143d3d 0%, #0c2828 48%, #071616 100%);
+    }
+    .rings, .rings::before, .rings::after {
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      border: 1px solid rgba(212, 160, 23, 0.14);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .rings { width: 920px; height: 920px; margin: -460px 0 0 -460px; }
+    .rings::before { content: ""; width: 1280px; height: 1280px; margin: -640px 0 0 -640px; }
+    .rings::after { content: ""; width: 1640px; height: 1640px; margin: -820px 0 0 -820px; border-color: rgba(212, 160, 23, 0.08); }
+
+    .chip {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(12, 40, 40, 0.78);
+      border: 1px solid rgba(212, 160, 23, 0.28);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    }
+    .chip b {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .chip span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+    .chip.tl { top: 28px; left: 36px; }
+    .chip.tr { top: 28px; right: 36px; text-align: right; }
+    .stat {
+      position: absolute;
+      z-index: 4;
+      font-family: var(--display);
+    }
+    .stat.bl { left: 42px; top: 108px; }
+    .stat.br { right: 48px; top: 108px; text-align: right; }
+    .stat strong {
+      display: block;
+      font-size: 42px;
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      color: var(--gold);
+    }
+    .stat em {
+      display: block;
+      margin-top: 6px;
+      font-style: normal;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .top {
+      position: relative;
+      z-index: 3;
+      padding: 28px 80px 0;
+      text-align: center;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, #1c5555, #0f2f2f);
+      border: 1px solid rgba(212, 160, 23, 0.45);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+    .brand-name {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+    .brand-name i { font-style: normal; color: var(--gold); }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: 46px;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+    h1 em { font-style: normal; color: var(--gold-soft); }
+    .lede {
+      margin: 10px auto 0;
+      max-width: 640px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #c5d6d6;
+    }
+
+    .stage {
+      position: absolute;
+      inset: 242px 0 110px;
+      z-index: 2;
+    }
+    .devices {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 980px;
+      margin-left: -490px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .imac { width: 720px; flex-shrink: 0; }
+    .imac-lid {
+      background: linear-gradient(#e8e4df, #c9c3bc);
+      border: 1px solid #b7b1aa;
+      border-bottom: 0;
+      border-radius: 18px 18px 0 0;
+      padding: 12px 12px 0;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+    }
+    .imac-screen {
+      background: var(--paper);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      height: 412px;
+      border: 1px solid #d4cdc4;
+    }
+    .imac-chin {
+      height: 28px;
+      background: linear-gradient(#efeae4, #d2ccc5);
+      border: 1px solid #b7b1aa;
+      border-top: 0;
+      border-radius: 0 0 16px 16px;
+      display: grid;
+      place-items: center;
+    }
+    .imac-chin i {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #143d3d; box-shadow: 0 0 0 3px #cfc9c3;
+    }
+    .imac-neck {
+      width: 92px; height: 30px; margin: 0 auto;
+      background: linear-gradient(90deg, #c4bdb5, #ece7e2 45%, #b7b0a8);
+      clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+    }
+    .imac-foot {
+      width: 176px; height: 8px; margin: 0 auto;
+      background: linear-gradient(#e4ded8, #b8b1a9);
+      border-radius: 6px 6px 2px 2px;
+    }
+
+    .phone {
+      width: 214px;
+      height: 438px;
+      margin: 0 0 18px -54px;
+      background: #0a1f1f;
+      border-radius: 38px;
+      padding: 10px 9px 11px;
+      position: relative;
+      z-index: 3;
+      box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45);
+      border: 1px solid #2a4a4a;
+      transform: none;
+    }
+    .phone::before, .phone::after {
+      content: "";
+      position: absolute;
+      background: #1a3333;
+      border-radius: 2px;
+    }
+    .phone::before { left: -3px; top: 96px; width: 3px; height: 32px; }
+    .phone::after { right: -3px; top: 118px; width: 3px; height: 56px; }
+    .phone-island {
+      position: absolute; top: 18px; left: 50%; margin-left: -38px;
+      width: 76px; height: 20px; border-radius: 99px; background: #000; z-index: 4;
+    }
+    .phone-screen {
+      height: 100%;
+      background: var(--cream);
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-home {
+      position: absolute; left: 50%; bottom: 8px; width: 78px; height: 4px;
+      margin-left: -39px; border-radius: 99px; background: #143d3d; opacity: 0.25;
+    }
+
+    .mod {
+      position: absolute;
+      z-index: 4;
+      width: 228px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(12, 40, 40, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .mod small {
+      display: block;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .mod b {
+      display: block;
+      font-family: var(--display);
+      font-size: 15px;
+      letter-spacing: -0.03em;
+    }
+    .mod p { margin-top: 4px; font-size: 11.5px; line-height: 1.35; color: #b7caca; }
+    .m1 { left: 36px; top: 248px; }
+    .m2 { left: 36px; top: 348px; }
+    .m3 { left: 36px; top: 448px; }
+    .m4 { left: 36px; top: 548px; }
+    .m5 { right: 36px; top: 248px; }
+    .m6 { right: 36px; top: 348px; }
+    .m7 { right: 36px; top: 448px; }
+    .m8 { right: 36px; top: 548px; }
+
+    .footer {
+      position: absolute;
+      left: 36px; right: 36px; bottom: 22px;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .foot {
+      padding: 14px 16px 12px;
+      border-radius: 16px;
+      background: rgba(12, 40, 40, 0.72);
+      border: 1px solid rgba(212, 160, 23, 0.18);
+    }
+    .foot b {
+      display: block;
+      font-family: var(--display);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .foot p { font-size: 12px; line-height: 1.4; color: #b7caca; }
+    .pills {
+      position: absolute;
+      left: 50%;
+      bottom: 118px;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 920px;
+    }
+    .pills i {
+      font-style: normal;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 7px 12px;
+      border-radius: 99px;
+      background: rgba(20, 61, 61, 0.9);
+      border: 1px solid rgba(212, 160, 23, 0.28);
+      color: #f3efe6;
+    }
+
+    .ui { height: 100%; display: flex; background: var(--paper); color: var(--ink); font-family: var(--body); }
+    .ui-nav {
+      width: 118px; flex-shrink: 0; background: #143d3d; color: #fff; padding: 12px 10px;
+    }
+    .ui-nav .logo { font-family: var(--display); font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+    .ui-nav .logo i { font-style: normal; color: var(--gold); }
+    .ui-nav p {
+      font-size: 10px; padding: 7px 8px; border-radius: 8px; color: #c9d6d6; margin-bottom: 3px;
+    }
+    .ui-nav p.on { background: var(--gold); color: var(--forest); font-weight: 800; }
+    .ui-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .ui-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 12px; border-bottom: 1px solid #d5e8e8; background: #fff;
+    }
+    .ui-bar b { font-size: 13px; font-family: var(--display); }
+    .ui-bar span { font-size: 10px; color: #4a5f5f; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 800; }
+    .ui-body { padding: 10px 12px; flex: 1; min-height: 0; }
+    .kpi { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 8px; }
+    .kpi i {
+      display: block; background: #fff; border: 1px solid #d5e8e8; border-radius: 9px; padding: 7px 8px;
+    }
+    .kpi em { display: block; font-style: normal; font-size: 8.5px; color: #4a5f5f; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .kpi strong { display: block; margin-top: 2px; font-size: 16px; font-family: var(--display); }
+    .grid2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 8px; height: calc(100% - 62px); }
+    .pane { background: #fff; border: 1px solid #d5e8e8; border-radius: 10px; padding: 9px; overflow: hidden; }
+    .pill {
+      display: inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: 0.07em;
+      text-transform: uppercase; background: var(--gold); color: var(--forest);
+      border-radius: 99px; padding: 3px 8px;
+    }
+    .pill.dark { background: #143d3d; color: #fff; }
+    .pill.ok { background: #16a34a; color: #fff; }
+    .wave { display: flex; align-items: flex-end; gap: 3px; height: 28px; margin-top: 8px; }
+    .wave span { width: 5px; background: var(--gold); border-radius: 99px; }
+    .wave span:nth-child(1) { height: 42%; } .wave span:nth-child(2) { height: 82%; }
+    .wave span:nth-child(3) { height: 56%; } .wave span:nth-child(4) { height: 96%; }
+    .wave span:nth-child(5) { height: 48%; } .wave span:nth-child(6) { height: 74%; }
+    .wave span:nth-child(7) { height: 52%; } .wave span:nth-child(8) { height: 88%; }
+    .row {
+      display: flex; justify-content: space-between; align-items: center; gap: 8px;
+      font-size: 11px; padding: 6px 0; border-bottom: 1px solid #e7eeed;
+    }
+    .row:last-child { border-bottom: 0; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #16a34a; display: inline-block; margin-right: 6px; }
+    .dot.warn { background: #d4a017; }
+    .dot.bad { background: #dc2626; }
+
+    .phone-ui { height: 100%; padding: 34px 12px 18px; background: linear-gradient(#143d3d, #0f2f2f); color: #fff; }
+    .ph-status { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; margin-bottom: 10px; color: #d7e4e4; }
+    .phone-ui h4 { font-family: var(--display); font-size: 18px; letter-spacing: -0.03em; margin: 6px 0 2px; }
+    .phone-ui .sub { font-size: 11px; color: #b7caca; margin-bottom: 10px; }
+    .bubble {
+      font-size: 11px; line-height: 1.35; padding: 8px 10px; border-radius: 12px; margin-bottom: 7px; max-width: 94%;
+    }
+    .bubble.echo { background: rgba(212, 160, 23, 0.18); border: 1px solid rgba(212, 160, 23, 0.35); }
+    .bubble.user { background: rgba(255,255,255,0.08); margin-left: auto; }
+    .ph-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .ph-actions span {
+      text-align: center; font-size: 10px; font-weight: 800; padding: 8px 6px; border-radius: 10px;
+    }
+    .ph-actions .gold { background: var(--gold); color: var(--forest); }
+    .ph-actions .ghost { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); }
+  </style>
+</head>
+<body>
+  <div class="artboard">
+    <div class="rings"></div>
+
+    <div class="chip tl">
+      <b>Desktop</b>
+      <span>Mission Control &amp; pipeline</span>
+    </div>
+    <div class="chip tr">
+      <b>Mobile</b>
+      <span>Live inbound call</span>
+    </div>
+
+    <div class="stat bl">
+      <strong>24/7</strong>
+      <em>Never miss a line</em>
+    </div>
+    <div class="stat br">
+      <strong>6</strong>
+      <em>Live product surfaces</em>
+    </div>
+
+    <header class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="7.2" stroke="#d4a017" stroke-width="1.4"/>
+            <circle cx="10" cy="10" r="4.2" stroke="#d4a017" stroke-width="1.4"/>
+            <circle cx="10" cy="10" r="1.6" fill="#d4a017"/>
+          </svg>
+        </div>
+        <div class="brand-name">Echo <i>Receptionist</i></div>
+      </div>
+      <p class="eyebrow">AI Voice Receptionist · SaaS</p>
+      <h1>Every inbound call answered,<br>qualified <em>&amp; booked</em></h1>
+      <p class="lede">Qualify. Book. Text. Sync CRM — 24/7 front desk for local businesses.</p>
+    </header>
+
+    <div class="mod m1">
+      <small>Module</small>
+      <b>AI Call Handling</b>
+      <p>Inbound lines answered in seconds. No voicemail drop-off.</p>
+    </div>
+    <div class="mod m2">
+      <small>Module</small>
+      <b>Smart Booking</b>
+      <p>Live Google Calendar slots with SMS confirmation.</p>
+    </div>
+    <div class="mod m3">
+      <small>Module</small>
+      <b>CRM Write-back</b>
+      <p>Transcript, tags, and notes push into GoHighLevel.</p>
+    </div>
+    <div class="mod m4">
+      <small>Platform</small>
+      <b>Vapi + Twilio</b>
+      <p>Voice engine, DID, and after-hours SMS on one stack.</p>
+    </div>
+    <div class="mod m5">
+      <small>Module</small>
+      <b>Lead Pipeline</b>
+      <p>New → qualified → booked, scored from the live call.</p>
+    </div>
+    <div class="mod m6">
+      <small>Module</small>
+      <b>Outbound Callbacks</b>
+      <p>Website forms trigger Echo to dial the lead back.</p>
+    </div>
+    <div class="mod m7">
+      <small>Workspace</small>
+      <b>Mission Control</b>
+      <p>Sentiment, CRM sync, and active calls on one board.</p>
+    </div>
+    <div class="mod m8">
+      <small>Agent</small>
+      <b>Knowledge Base</b>
+      <p>Hours, insurance rules, and transfer playbook.</p>
+    </div>
+
+    <div class="stage">
+      <div class="devices">
+        <div class="imac">
+          <div class="imac-lid">
+            <div class="imac-screen">
+              <div class="ui">
+                <aside class="ui-nav">
+                  <div class="logo">Echo<i>R</i></div>
+                  <p class="on">Control</p>
+                  <p>Call logs</p>
+                  <p>Pipeline</p>
+                  <p>Agent</p>
+                  <p>Connect</p>
+                  <p>Vapi</p>
+                </aside>
+                <div class="ui-main">
+                  <div class="ui-bar">
+                    <b>Mission Control</b>
+                    <span>Northline Dental · live inbound</span>
+                  </div>
+                  <div class="ui-body">
+                    <div class="kpi">
+                      <i><em>Active</em><strong>1</strong></i>
+                      <i><em>Today</em><strong>12</strong></i>
+                      <i><em>Qualified</em><strong>7</strong></i>
+                      <i><em>Booked</em><strong>4</strong></i>
+                      <i><em>Sentiment</em><strong>78</strong></i>
+                      <i><em>CRM</em><strong>91%</strong></i>
+                    </div>
+                    <div class="grid2">
+                      <div class="pane">
+                        <span class="pill">Inbound · dental</span>
+                        <p style="margin-top:8px;font-size:14px;font-weight:800;">Maya Chen</p>
+                        <p style="font-size:11px;color:#4a5f5f;margin-top:2px;">Same-day consult after insurance denial · 1:34</p>
+                        <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="row" style="margin-top:6px;"><span>Intent</span><b>Book consult</b></div>
+                        <div class="row"><span>Slot offered</span><b>Tue 10:00 AM</b></div>
+                        <div class="row"><span>Transfer</span><b>Hold unless urgent</b></div>
+                      </div>
+                      <div class="pane">
+                        <p style="font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4a5f5f;margin-bottom:4px;">Recent calls</p>
+                        <div class="row"><span><span class="dot"></span>James Ortega</span><b>Booked</b></div>
+                        <div class="row"><span><span class="dot"></span>Priya Shah</span><b>Qualified</b></div>
+                        <div class="row"><span><span class="dot warn"></span>Daniel Brooks</span><b>Transferred</b></div>
+                        <div class="row"><span><span class="dot"></span>Sofia Alvarez</span><b>Info</b></div>
+                        <div class="row"><span><span class="dot bad"></span>Unknown</span><b>Missed</b></div>
+                        <div class="row"><span>GoHighLevel</span><span class="pill ok">Synced</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="imac-chin"><i></i></div>
+          <div class="imac-neck"></div>
+          <div class="imac-foot"></div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div class="phone-ui">
+              <div class="ph-status"><span>9:41</span><span>LTE ●●●</span></div>
+              <span class="pill">Live call · Echo</span>
+              <h4>Northline Dental</h4>
+              <p class="sub">Maya Chen · +1 (415) 555-0182</p>
+              <div class="bubble echo">Thanks for calling Northline Dental. This is Echo. How can I help today?</div>
+              <div class="bubble user">I need a same-day consult. Insurance was denied this morning.</div>
+              <div class="bubble echo">Tuesday 10:00 with Dr. Patel is open. I’ll text confirmation and log GoHighLevel.</div>
+              <div class="ph-actions">
+                <span class="gold">Book slot</span>
+                <span class="ghost">Transfer</span>
+              </div>
+              <div class="phone-home"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pills">
+      <i>Call Logs</i>
+      <i>Lead Pipeline</i>
+      <i>Agent Builder</i>
+      <i>Vapi Voice</i>
+      <i>GoHighLevel</i>
+      <i>Google Calendar</i>
+      <i>Twilio SMS</i>
+      <i>Analytics</i>
+    </div>
+
+    <div class="footer">
+      <article class="foot">
+        <b>Why it exists</b>
+        <p>Missed calls were costing booked work. Echo stays on the line after hours so the next business does not win the job.</p>
+      </article>
+      <article class="foot">
+        <b>How it works</b>
+        <p>Echo answers, qualifies, offers a real calendar slot, texts the caller, then writes transcript and tags to CRM.</p>
+      </article>
+      <article class="foot">
+        <b>What you get</b>
+        <p>Mission Control, live call log, pipeline, Vapi config, and integrations — desktop workspace plus the live phone line.</p>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

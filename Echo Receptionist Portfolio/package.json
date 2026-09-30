@@ -1,0 +1,12 @@
+{
+  "name": "echo-receptionist-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pdf": "node export-pdf.mjs"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^25.10.0"
+  }
+}
